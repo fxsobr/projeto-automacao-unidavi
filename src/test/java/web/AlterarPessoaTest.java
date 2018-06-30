@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
-public class CadastrarPessoaTest {
+public class AlterarPessoaTest {
 
     private WebDriver driver;
     private WebDriverWait wait;
@@ -28,21 +28,26 @@ public class CadastrarPessoaTest {
     }
 
     @Test
-    public void cadastroComSucesso(){
+    public void editarPessoa(){
         driver.get("http://livrodeteste.com/otestadortecnico/app");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("adicionar")));
-        driver.findElement(By.id("adicionar")).click();
+        driver.findElement(By.id("pesquisar")).click();
+        driver.findElement(By.id("pesquisar")).sendKeys("Marcelo");
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("editar")));
+        driver.findElement(By.id("editar")).click();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".w3-btn.w3-teal")));
-        driver.findElement(By.id("nome")).sendKeys("teste_nome1");
-        driver.findElement(By.name("endereco")).sendKeys("teste_cidade1");
-        driver.findElement(By.id("hobbies")).sendKeys("teste_hobbie1");
+        driver.findElement(By.id("nome")).clear();
+        driver.findElement(By.id("nome")).sendKeys("nomeEditado");
+        driver.findElement(By.id("hobbies")).clear();
+        driver.findElement(By.id("hobbies")).sendKeys("hobbieEditado");
         driver.findElement(By.cssSelector(".w3-btn.w3-teal")).click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("adicionar")));
+        driver.findElement(By.id("pesquisar")).click();
+        driver.findElement(By.id("pesquisar")).sendKeys("nomeEditado");
 
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("remover")));
-        String dadosPagina = driver.getPageSource();
-        assertTrue(dadosPagina.contains("teste_nome1"));
-        assertTrue(dadosPagina.contains("teste_cidade1"));
-        assertTrue(dadosPagina.contains("teste_hobbie1"));
+        assertEquals(driver.findElement(By.id("nome")).getText(), "nomeEditado");
+
 
     }
+
 }
