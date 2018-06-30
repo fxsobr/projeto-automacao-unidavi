@@ -48,5 +48,25 @@ public class APITest {
 
     }
 
+    @Test
+    public void removerPessoa(){
+        int id =
+                given()
+                        .contentType(ContentType.JSON)
+                        .body(new Person("MBAPEH", "FRANÇA", "JOGADOR DE FUTEBOL"))
+                .when()
+                        .post("person")
+                .then()
+                        .extract()
+                        .path("id");
+
+        when()
+                .delete("person/{id}", id)
+        .then()
+                .body("statusMessage", equalTo("success"))
+                .body("message", equalTo("Person removed!"))
+                .statusCode(202);
+    }
+
 
 }
