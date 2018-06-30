@@ -35,5 +35,18 @@ public class APITest {
                     .statusCode(201);
     }
 
+    @Test
+    public void validaPessoa(){
+        when()
+                .get("person/{id}","1")
+        .then()
+                .contentType("application/json").and()
+                .body("name", equalTo("Marcelo"))
+                .body("address", equalTo("UNIDAVI"))
+                .body("hobbies", equalTo("Video game"))
+                .statusCode(200);
+
+    }
+
 
 }
