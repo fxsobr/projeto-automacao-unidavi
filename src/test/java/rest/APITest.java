@@ -63,9 +63,35 @@ public class APITest {
         when()
                 .delete("person/{id}", id)
         .then()
+                .contentType(ContentType.JSON)
                 .body("statusMessage", equalTo("success"))
                 .body("message", equalTo("Person removed!"))
                 .statusCode(202);
+    }
+
+    @Test
+    public void alterarPessoa(){
+        int id =
+                given()
+                        .contentType(ContentType.JSON)
+                        .body(new Person("NEYMARSSSSS", "BRAZIL", "JOGADOR DE FUTEBOL"))
+                        .when()
+                        .post("person")
+                        .then()
+                        .extract()
+                        .path("id");
+
+        given()
+                .contentType(ContentType.JSON)
+                .body(new Person("OI OI", "BRAZIL", "JOGADOR DE FUTEBOL"))
+        .when()
+                .put("person/{id}", id)
+        .then()
+                .contentType(ContentType.JSON).and()
+                .statusCode(200)
+                .body("name", equalTo("OI OI"))
+                .body("address", equalTo("BRAZIL"))
+                .body("hobbies", equalTo("JOGADOR DE FUTEBOL"));
     }
 
 
