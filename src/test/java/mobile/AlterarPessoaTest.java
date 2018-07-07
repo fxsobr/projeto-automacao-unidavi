@@ -20,10 +20,10 @@ import org.testng.annotations.Test;
  *
  * @author suporte
  */
-public class AdicionarPessoaTest {
+public class AlterarPessoaTest {
     
     @Test
-    public void adicionarPessoaComSucesso() throws MalformedURLException{
+    public void alterarPessoaComSucesso() throws MalformedURLException{
         File app = new File("C:/Users/suporte/Documents/pos/projeto-automacao-unidavi/app/pessoas.apk");
         
         DesiredCapabilities capacidade = new DesiredCapabilities();
@@ -33,11 +33,15 @@ public class AdicionarPessoaTest {
         
         AppiumDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capacidade);
         
-        driver.findElement(By.id("com.eliasnogueira.workshop:id/fab")).click();
-        driver.findElement(By.id("com.eliasnogueira.workshop:id/txt_nome")).sendKeys("Davi");
-        driver.findElement(By.id("com.eliasnogueira.workshop:id/txt_endereco")).sendKeys("UNDIAVI");
-        driver.findElement(By.id("com.eliasnogueira.workshop:id/txt_hobbies")).sendKeys("OI");
+        driver.findElement(By.id("android:id/search_button")).click();
+        driver.findElement(By.id("android:id/search_src_text")).sendKeys("helloAutomator");
+        driver.findElement(By.id("android:id/text1")).click();
+        driver.findElement(By.id("com.eliasnogueira.workshop:id/txt_nome")).clear();
+        driver.findElement(By.id("com.eliasnogueira.workshop:id/txt_nome")).sendKeys("rteste");
         driver.findElement(By.id("com.eliasnogueira.workshop:id/button")).click();
+        driver.findElement(By.id("android:id/search_button")).click();
+        driver.findElement(By.id("android:id/search_src_text")).sendKeys("rteste");
+        
        
         
     }
