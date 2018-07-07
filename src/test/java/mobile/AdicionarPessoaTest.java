@@ -34,7 +34,7 @@ public class AdicionarPessoaTest {
         AppiumDriver driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capacidade);
         
         driver.findElement(By.id("com.eliasnogueira.workshop:id/fab")).click();
-        driver.findElement(By.id("com.eliasnogueira.workshop:id/txt_nome")).sendKeys("oioi");
+        driver.findElement(By.id("com.eliasnogueira.workshop:id/txt_nome")).sendKeys("umapessoa");
         driver.findElement(By.id("com.eliasnogueira.workshop:id/txt_endereco")).sendKeys("UNDIAVI");
         driver.findElement(By.id("com.eliasnogueira.workshop:id/txt_hobbies")).sendKeys("OI");
         driver.findElement(By.id("com.eliasnogueira.workshop:id/button")).click();
