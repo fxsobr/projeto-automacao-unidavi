@@ -24,7 +24,7 @@ public class AlterarPessoaTest {
     
     @Test
     public void alterarPessoaComSucesso() throws MalformedURLException{
-        File app = new File("C:/Users/suporte/Documents/pos/projeto-automacao-unidavi/app/pessoas.apk");
+        File app = new File("C:/Users/suporte/IdeaProjects/projeto-automacao-unidavi/app/pessoas.apk");
         
         DesiredCapabilities capacidade = new DesiredCapabilities();
         capacidade.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
